@@ -13,7 +13,6 @@ analyzer_rules:
   - unused_declaration
   - unused_import
 number_separator:
-  minimum_length: 5
 line_length: 200
 identifier_name:
   max_length:
