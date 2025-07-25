@@ -1,12 +1,44 @@
-#
-# This list of browsers is a conservative definition, based on
-# https://docs.gitlab.com/ee/install/requirements.html#supported-web-browsers.
-# 
-# To see what browsers this targets, go here:
-# https://browsersl.ist/#q=%3E+0.5%25%2C+last+2+versions%2C+Firefox+ESR%2C+not+dead
-# 
+根据您的要求，我将提供一段实现登录流程的伪代码。以下是伪代码：
 
-> 0.5%
-last 2 versions
-Firefox ESR
-not dead
+```python
+# 登录流程伪代码
+
+# 定义用户模型
+class User:
+    def __init__(self, username, password, is_admin=False):
+        self.username = username
+        self.password = password
+        self.is_admin = is_admin
+
+# 定义登录函数
+def login(username, password):
+    # 假设我们有一个用户数据库
+    user_database = {
+        'user1': User('user1', 'password1'),
+        'admin': User('admin', 'password123', is_admin=True)
+    }
+    
+    # 检查用户名是否存在
+    if username in user_database:
+        user = user_database[username]
+        
+        # 检查密码是否正确
+        if user.password == password:
+            # 校验是否为管理员
+            if user.is_admin:
+                return f"Welcome, {username}! You are an administrator."
+            else:
+                return f"Welcome, {username}! You are a regular user."
+        else:
+            return "Invalid password."
+    else:
+        return "User not found."
+
+# 示例：用户尝试登录
+print(login('user1', 'password1'))  # 应该返回 "Welcome, user1! You are a regular user."
+print(login('admin', 'password123'))  # 应该返回 "Welcome, admin! You are an administrator."
+print(login('user1', 'wrongpassword'))  # 应该返回 "Invalid password."
+print(login('nonexistentuser', 'password'))  # 应该返回 "User not found."
+```
+
+这段伪代码定义了一个简单的用户模型和一个登录函数，该函数检查用户名和密码，并且能够识别管理员用户。您可以根据实际需求进一步扩展和实现这个流程。
